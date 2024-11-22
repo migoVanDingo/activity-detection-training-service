@@ -1,0 +1,2 @@
+load_trims:
+  output_shape: [224, 224]
