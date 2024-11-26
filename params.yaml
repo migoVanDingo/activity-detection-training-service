@@ -1,2 +1,31 @@
-load_trims:
+preprocess:
+  trim_list_file: 
   output_shape: [224, 224]
+  output_file_name: /data/interim/trim_data.pt
+  data_aug_flag: True
+
+prepare_environment:
+  seed: 42
+  device: cuda
+  model_diagram: /data/processed/model_diagram.txt
+  working_dir: /data/processed
+  logs:
+  - training_log: training.json
+  - validation_log: validation.json
+
+load_training_data:
+  data_file: /data/interim/trim_data.pt
+  batch_size: 32
+  shuffle: True
+  num_workers: 16
+
+training:
+  max_epochs: 10
+  epoch_save_interval: 50
+  epock_skip: 50
+  early_stopping: 5
+
+
+
+
+
