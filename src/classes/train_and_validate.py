@@ -6,7 +6,7 @@ import time, json, math, os, torch
 
 
 
-from src.utility.logger_config import setup_logger
+from utility.logger_config import setup_logger
 
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 

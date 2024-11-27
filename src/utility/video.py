@@ -5,7 +5,7 @@ import numpy as np
 import skvideo.io as skvio
 import torch
 
-from src.utility.file import check_file_path
+from utility.file import check_file_path
 
 
 def get_video_properties(vpath: str):

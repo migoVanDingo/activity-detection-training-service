@@ -2,8 +2,8 @@ import os
 import traceback
 import torch
 from dotenv import load_dotenv
-from src.utility.video import load_to_tensor_using_cv2
-from src.utility.logger_config import setup_logger
+from utility.video import load_to_tensor_using_cv2
+from utility.logger_config import setup_logger
 load_dotenv()
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 

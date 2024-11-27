@@ -1,7 +1,7 @@
 import os
-from src.classes.preprocess import Preprocess
-from src.utility.load import LoadUtils
-from src.utility.logger_config import setup_logger
+from classes.preprocess import Preprocess
+from utility.load import LoadUtils
+from utility.logger_config import setup_logger
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == '__main__':

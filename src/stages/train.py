@@ -1,8 +1,8 @@
 import os
 
-from src.classes.load_dataset import LoadDataset
+from classes.load_dataset import LoadDataset
 from torch.utils.data import DataLoader
-from src.utility.load import LoadUtils, load_yaml
+from utility.load import LoadUtils, load_yaml
 
 
 if __name__ == '__main__':
