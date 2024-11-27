@@ -165,7 +165,7 @@ class DyadicCNN3DV2(nn.Module):
 
         
         ic = np.prod(ishape) * oc
-        #print(f"ic: {ic} ishape: {ishape} oc: {oc}")
+        print(f"ic: {ic} ishape: {ishape} oc: {oc}")
         model_dict['Dense'] = nn.Linear(ic, 1)
 
         return model_dict
