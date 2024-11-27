@@ -1,14 +1,14 @@
 preprocess:
   trim_list_file: 
   output_shape: [224, 224]
-  output_file_name: /data/interim/trim_data.pt
+  output_file_name: data/interim/trim_data.pt
   data_aug_flag: True
 
 prepare_environment:
   seed: 42
   cuda_device_id: cuda:0
-  model_summary: /data/processed/model_summary.txt
-  working_dir: /data/processed
+  model_summary: data/processed/model_summary.txt
+  working_dir: data/processed
   logs:
   - training_log: training.json
   - validation_log: validation.json
@@ -20,7 +20,7 @@ prepare_environment:
       in_shape: [3, 90, 224, 224]
 
 load_training_data:
-  data_file: /data/interim/trim_data.pt
+  data_file: data/interim/trim_data.pt
   batch_size: 32
   shuffle: True
   num_workers: 16
