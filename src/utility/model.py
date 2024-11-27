@@ -3,9 +3,9 @@ import torch
 class ModelUtils:
 
     def load_model(config):
-        model_file = config["model"]["file"]
-        model_class_name = config["model"]["class"]
-        model_params = config["model"]["params"]
+        model_file = config["prepare_environment"]["model"]["file"]
+        model_class_name = config["prepare_environment"]["model"]["class"]
+        model_params = config["prepare_environment"]["model"]["params"]
 
         # Dynamically load the model module
         spec = importlib.util.spec_from_file_location("custom_model", model_file)
@@ -27,4 +27,4 @@ class ModelUtils:
 
         return model
     
-    
+
