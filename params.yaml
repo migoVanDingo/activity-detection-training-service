@@ -16,9 +16,9 @@ prepare_environment:
     file: /models/dyadic_cnn_3d.py
     class: DyadicCnn3D 
     params:
-      num_dyads: 4
-      input_shape: [3, 90, 224, 224]
-      num_kernels: [4, 8, 16, 32]
+    - num_dyads: 4
+    - input_shape: [3, 90, 224, 224]
+    - num_kernels: [4, 8, 16, 32]
 
 load_training_data:
   data_file: /data/interim/trim_data.pt
