@@ -1,0 +1,15 @@
+stages:
+  prepare_environment:
+    cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/prepare_environment.py
+    deps:
+      - src/utility/load.py
+      - src/utility/directory.py
+      - src/utility/model.py
+      - src/utility/device.py
+    params:
+      - prepare_environment
+      - training
+    outs:
+      - data/processed/model_summary.txt
+      - data/processed/checkpoint 
+

@@ -1,3 +1,4 @@
 .env
 /data
+.test_train/
 .training-service/
