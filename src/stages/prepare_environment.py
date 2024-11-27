@@ -28,7 +28,7 @@ if __name__ == "__main__":
     #Generate model summary
     with open(config['prepare_environment']['model_summary'], "w") as file:
         
-        model = ModelUtils.load_model(config, checkpoint_dir)
+        model = ModelUtils.load_model(config)
         model_summary = str(summary(model, input_data=config['training']['input_shape']))
 
         # Save model summary to file

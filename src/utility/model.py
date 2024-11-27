@@ -2,7 +2,7 @@ import importlib.util
 import torch
 class ModelUtils:
 
-    def load_model(config, checkpoint_dir):
+    def load_model(config):
         model_file = config["prepare_environment"]["model"]["file"]
         model_class_name = config["prepare_environment"]["model"]["class"]
         model_params = config["prepare_environment"]["model"]["params"]
@@ -20,11 +20,11 @@ class ModelUtils:
         model = model_class(**model_params)
 
         # Load checkpoint if specified
-        
-        if checkpoint_dir and torch.cuda.is_available():
-            model.load_state_dict(torch.load(checkpoint_dir))
-        elif checkpoint_dir:
-            model.load_state_dict(torch.load(checkpoint_dir, map_location=torch.device('cpu')))
+        checkpoint_path = config["prepare_environment"]["model_summary"]
+        if checkpoint_path and torch.cuda.is_available():
+            model.load_state_dict(torch.load(checkpoint_path))
+        elif checkpoint_path:
+            model.load_state_dict(torch.load(checkpoint_path, map_location=torch.device('cpu')))
 
         return model
     
