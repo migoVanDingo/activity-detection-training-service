@@ -13,12 +13,12 @@ prepare_environment:
   - training_log: training.json
   - validation_log: validation.json
   model:
-    file: /models/dyadic_cnn_3d.py
-    class: DyadicCnn3D 
+    file: src/models/dyadic_cnn_3d.py
+    class: DyadicCNN3DV2 
     params:
       num_dyads: 4
-      input_shape: [3, 90, 224, 224]
-      num_kernels: [4, 8, 16, 32]
+      in_shape: [3, 90, 224, 224]
+      nkernels: [4, 8, 16, 32]
 
 load_training_data:
   data_file: /data/interim/trim_data.pt
