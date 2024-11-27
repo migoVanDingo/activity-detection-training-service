@@ -7,18 +7,15 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class DyadicCNN3D(nn.Module):
+class DyadicCNN3DV2(nn.Module):
 
     MAX_DYADS = 4
     """ Maximum dyads possible. This value depends on size of input and maxpooling layer.
     For 224x224 we can have a maximum of 4 dyads """
 
     
-    def __init__(self, params):
-        num_dyads = params['num_dyads']
-        in_shape = params['in_shape']
-        nkernels = params['num_kernels']
-        seed = random.randint(101, 201)
+    def __init__(self, num_dyads, in_shape, nkernels=[4, 8, 16, 32],
+                 seed=random.randint(101, 201)):
         """ Dyadic 3DCNNs for recognizing activities in AOLME dataset.
         Maximum number of dyads is 6.
 
