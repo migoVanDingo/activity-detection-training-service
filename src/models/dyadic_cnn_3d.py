@@ -96,7 +96,7 @@ class DyadicCNN3DV2(nn.Module):
 
         # Dyad loop
         for didx in range(0, nd):
-            print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}")
+            print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}, nk={nk}")
             if didx == 0:
                 ic = ic
                 oc = int(nk[didx])
