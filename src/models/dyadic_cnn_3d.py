@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class DyadicCNN3DV2(nn.Module):
+class DyadicCNN3D(nn.Module):
 
     MAX_DYADS = 4
     """ Maximum dyads possible. This value depends on size of input and maxpooling layer.
