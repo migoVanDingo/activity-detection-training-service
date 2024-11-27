@@ -19,7 +19,7 @@ if __name__ == "__main__":
     system_logger.info("STAGE: prepare_environment")
 
     # Load the configuration file
-    config = LoadUtils.load_yaml(os.environ.get('CONFIG_FILE'))
+    config = LoadUtils.load_yaml(os.environ['PARAMS_PATH'])
 
     # Create checkpoint directory
     checkpoint_dir = os.path.join(config['prepare_environment']['working_dir'], Constant.CHECKPOINT_DIRECTORY)

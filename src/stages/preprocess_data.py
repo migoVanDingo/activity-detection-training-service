@@ -6,7 +6,7 @@ system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == '__main__':
     system_logger.info("STAGE: preprocess_data")
-    config = LoadUtils.load_yaml(os.environ.get('CONFIG_FILE'))
+    config = LoadUtils.load_yaml(os.environ['PARAMS_PATH'])
     data = Preprocess.preprocess_ground_truth(video_directory=config['video_directory'], 
                                        trim_list_file=config['preprocess']['trim_list_file'], 
                                        output_shape=config['preprocess']['output_shape'], 
