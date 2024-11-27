@@ -15,7 +15,7 @@ class DyadicCNN3DV2(nn.Module):
 
     
     def __init__(self, num_dyads, in_shape):
-        nkernels=[4, 8, 16, 32],
+        nkernels=[4, 8, 16, 32]
         seed=random.randint(101, 201)
         print(f"num_dyads: {num_dyads}, in_shape: {in_shape}")
         """ Dyadic 3DCNNs for recognizing activities in AOLME dataset.
