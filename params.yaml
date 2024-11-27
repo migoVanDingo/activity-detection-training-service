@@ -13,7 +13,7 @@ prepare_environment:
   - training_log: training.json
   - validation_log: validation.json
   model:
-    file: /src/models/dyadic_cnn_3d.py
+    file: /models/dyadic_cnn_3d.py
     class: DyadicCnn3D 
     params:
       num_dyads: 4
