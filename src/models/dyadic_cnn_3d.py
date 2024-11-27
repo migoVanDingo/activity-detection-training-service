@@ -17,9 +17,10 @@ class DyadicCNN3DV2(nn.Module):
     def __init__(self, num_dyads, in_shape):
         nkernels=[4, 8, 16, 32],
         seed=random.randint(101, 201)
+        print(f"num_dyads: {num_dyads}, in_shape: {in_shape}")
         """ Dyadic 3DCNNs for recognizing activities in AOLME dataset.
         Maximum number of dyads is 6.
-
+        
         
 
         Parameters
@@ -88,23 +89,7 @@ class DyadicCNN3DV2(nn.Module):
 
 
     def _build_model_dict(self, nd, nk, ishape):
-        """ Build dyadic networks
-
-        Parameters
-        ----------
-        nd: int
-            Number of dyads in the model. There can be a maximum of
-            6 dyads.
-        nk: int[lst], optional
-            Number of kernels to use in each dyad. The default is
-            [4, 8, 16, 32, 64, 128].
-        ishape: int[lst]
-            Input shape **[<channels>, <frames>, <Height>, <Width>]**.
-            It can build models for following input shapes,
-                1. [3, 90, 224, 224]
-                2. [3, 60, 224, 224]
-                3. [3, 30, 224, 224]
-        """
+  
         ic = ishape[0]
         del ishape[0]
         model_dict = dict()
