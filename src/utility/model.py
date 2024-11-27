@@ -22,7 +22,7 @@ class ModelUtils:
         # Load checkpoint if specified
         checkpoint_path = config['prepare_environment']['checkpoint']
         if checkpoint_path and torch.cuda.is_available():
-            model.load_state_dict(torch.load(checkpoint_path))
+            model.load_state_dict(torch.load(checkpoint_path['model_state_dict']))
         elif checkpoint_path:
             model.load_state_dict(torch.load(checkpoint_path, map_location=torch.device('cpu')))
 
