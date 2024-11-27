@@ -8,6 +8,7 @@ prepare_environment:
   seed: 42
   cuda_device_id: cuda:0
   model_summary: data/processed/model_summary.txt
+  checkpoint: data/external/best_epoch53.pth
   working_dir: data/processed
   logs:
   - training_log: training.json

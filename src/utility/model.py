@@ -20,7 +20,7 @@ class ModelUtils:
         model = model_class(**model_params)
 
         # Load checkpoint if specified
-        checkpoint_path = config["prepare_environment"]["model_summary"]
+        checkpoint_path = config['prepare_environment']['checkpoint']
         if checkpoint_path and torch.cuda.is_available():
             model.load_state_dict(torch.load(checkpoint_path))
         elif checkpoint_path:
