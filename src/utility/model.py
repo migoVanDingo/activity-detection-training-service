@@ -16,6 +16,7 @@ class ModelUtils:
         model_class = getattr(custom_model_module, model_class_name)
 
         # Initialize the model with parameters
+        print(f"Initializing model: {model_params}")
         model = model_class(**model_params)
 
         # Load checkpoint if specified
