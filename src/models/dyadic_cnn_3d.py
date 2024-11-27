@@ -96,7 +96,7 @@ class DyadicCNN3DV2(nn.Module):
 
         # Dyad loop
         for didx in range(0, nd):
-            
+            print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}")
             if didx == 0:
                 ic = ic
                 oc = nk[didx]
@@ -104,6 +104,7 @@ class DyadicCNN3DV2(nn.Module):
                 ic = nk[didx - 1]
                 oc = nk[didx]
 
+            print(f"Initializing Conv3d with ic={ic}, oc={oc}")
             # CNN3D
             model_dict[f'Conv_{didx}_0'] = nn.Conv3d(in_channels=ic,
                                                    out_channels=oc,
