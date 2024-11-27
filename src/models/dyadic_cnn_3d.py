@@ -99,10 +99,10 @@ class DyadicCNN3DV2(nn.Module):
             print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}")
             if didx == 0:
                 ic = ic
-                oc = nk[didx]
+                oc = int(nk[didx])
             else:
-                ic = nk[didx - 1]
-                oc = nk[didx]
+                ic = int(nk[didx - 1])
+                oc = int(nk[didx])
 
             print(f"Initializing Conv3d with ic={ic}, oc={oc}")
             # CNN3D
