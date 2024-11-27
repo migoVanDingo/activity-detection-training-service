@@ -1,5 +1,7 @@
 import importlib.util
 import torch
+
+
 class ModelUtils:
 
     def load_model(config):
@@ -8,7 +10,8 @@ class ModelUtils:
         model_params = config["prepare_environment"]["model"]["params"]
 
         # Dynamically load the model module
-        spec = importlib.util.spec_from_file_location("custom_model", model_file)
+        spec = importlib.util.spec_from_file_location(
+            "custom_model", model_file)
         custom_model_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(custom_model_module)
 
@@ -22,10 +25,14 @@ class ModelUtils:
         # Load checkpoint if specified
         checkpoint_path = config['prepare_environment']['checkpoint']
         if checkpoint_path and torch.cuda.is_available():
-            model.load_state_dict(torch.load(checkpoint_path['model_state_dict']))
+            checkpoint = torch.load(checkpoint_path)
         elif checkpoint_path:
-            model.load_state_dict(torch.load(checkpoint_path, map_location=torch.device('cpu')))
+            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+
+        # Extract the model's state dictionary
+        if 'model_state_dict' in checkpoint:
+            model.load_state_dict(checkpoint['model_state_dict'])
+        else:
+            model.load_state_dict(checkpoint)  # In case it's a direct state_dict
 
         return model
-    
-
