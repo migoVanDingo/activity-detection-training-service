@@ -13,9 +13,7 @@ load_dotenv()
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == "__main__":
-    
-    print(f"CWD: {os.getcwd()}")
-    print(f"sys path: {sys.path}")
+
     system_logger.info("STAGE: prepare_environment")
 
     # Load the configuration file

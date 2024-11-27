@@ -18,7 +18,6 @@ prepare_environment:
     params:
       num_dyads: 4
       in_shape: [3, 90, 224, 224]
-      nkernels: [4, 8, 16, 32]
 
 load_training_data:
   data_file: /data/interim/trim_data.pt

@@ -14,8 +14,9 @@ class DyadicCNN3DV2(nn.Module):
     For 224x224 we can have a maximum of 4 dyads """
 
     
-    def __init__(self, num_dyads, in_shape, nkernels=[4, 8, 16, 32],
-                 seed=random.randint(101, 201)):
+    def __init__(self, num_dyads, in_shape):
+        nkernels=[4, 8, 16, 32],
+        seed=random.randint(101, 201)
         """ Dyadic 3DCNNs for recognizing activities in AOLME dataset.
         Maximum number of dyads is 6.
 
