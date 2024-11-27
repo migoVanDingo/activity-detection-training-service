@@ -8,6 +8,8 @@ from utility.logger_config import setup_logger
 from utility.model import ModelUtils
 from torchinfo import summary
 import sys
+from dotenv import load_dotenv
+load_dotenv()
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == "__main__":
