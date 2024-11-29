@@ -2,6 +2,7 @@ import os
 import traceback
 import torch
 from dotenv import load_dotenv
+from src.utility.file import FileUtils
 from utility.video import load_to_tensor_using_cv2
 from utility.logger_config import setup_logger
 load_dotenv()
@@ -36,6 +37,7 @@ class Preprocess:
                     trims.append((label, video_tensor))
 
             # Save as .pt file
+            FileUtils.create_file(os.path.dirname(output_file))
             torch.save(trims, output_file)
             system_logger.info(f"Preprocessed data saved to: {output_file}")
             print(f"{__class__.__name__} -- Preprocessed data saved to: {output_file}")
