@@ -60,9 +60,10 @@ class DyadicCNN3DV2(nn.Module):
         self.model = nn.ModuleDict(
             self._build_model_dict(num_dyads, nkernels, in_shape))
 
-    def forward(self, x):
+    def forward(self, x, *args, **kwargs):
         """ Forward pass.
         """
+        print(f"Forward called with: x={x}, args={args}, kwargs={kwargs}")
         for lname in self.model:
             layer = self.model[lname]
             #print(f"\nSTART Forward: lname = {lname}\n, layer = {layer}\n, INPUT x.shape = {x.shape}")

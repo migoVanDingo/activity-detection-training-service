@@ -1,5 +1,7 @@
 import os
 
+import torch
+
 from utility.constant import Constant
 from utility.device import DeviceUtils
 from utility.directory import DirectoryUtils
@@ -29,7 +31,7 @@ if __name__ == "__main__":
     with open(config['prepare_environment']['model_summary'], "w") as file:
         
         model = ModelUtils.load_model(config)
-        model_summary = str(summary(model, input_data=config['training']['input_shape'], batch_dim=config['training']['batch_size'], device=DeviceUtils.get_cuda_device(config['prepare_environment']['cuda_device_id'])))
+        model_summary = str(summary(model, input_data=torch.randn(*config['training']['input_shape']), batch_dim=config['training']['batch_size'], device=DeviceUtils.get_cuda_device(config['prepare_environment']['cuda_device_id'])))
 
         # Save model summary to file
         file.write(model_summary)
