@@ -2,7 +2,7 @@ import os
 
 import torch
 
-from src.utility.file import FileUtils
+from utility.file import FileUtils
 from utility.constant import Constant
 from utility.device import DeviceUtils
 from utility.directory import DirectoryUtils
