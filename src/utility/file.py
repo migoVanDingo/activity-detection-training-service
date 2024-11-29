@@ -16,9 +16,8 @@ class FileUtils:
         :return: True if file created, False otherwise
         """
         if not os.path.isfile(file_path):
-            with open(file_path, "w") as file:
-                file.close()
-                return True
+            open(file_path, "w").close()
+            return True
         return False
 
     def read_file(file_path: str) -> str:
