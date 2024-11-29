@@ -15,6 +15,7 @@ class FileUtils:
         :param file_path :: str : path to file
         :return: True if file created, False otherwise
         """
+        print(f"Creating file: {file_path}")
         if not os.path.isfile(file_path):
             open(file_path, "w").close()
             return True

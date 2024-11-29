@@ -28,8 +28,8 @@ if __name__ == "__main__":
     system_logger.info(f"Checkpoint directory created at {checkpoint_dir}")
 
     
-    FileUtils.create_file(config['preprocess']['output_file_name']) 
-    print(f"Create preprocess output file: {config['preprocess']['output_file_name']}")
+    FileUtils.create_file(os.path.join(os.getcwd(), config['preprocess']['output_file_name'])) 
+    print(f"Create preprocess output file: {os.path.join(os.getcwd(), config['preprocess']['output_file_name'])}")
 
     
     #Generate model summary
