@@ -25,9 +25,9 @@ class ModelUtils:
         # Load checkpoint if specified
         checkpoint_path = config['prepare_environment']['checkpoint']
         if checkpoint_path and torch.cuda.is_available():
-            checkpoint = torch.load(checkpoint_path)
+            checkpoint = torch.load(checkpoint_path, weights_only=True)
         elif checkpoint_path:
-            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'), weights_only=True)
 
         # Extract the model's state dictionary
         if 'model_state_dict' in checkpoint:

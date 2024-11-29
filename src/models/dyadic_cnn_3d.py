@@ -63,7 +63,6 @@ class DyadicCNN3DV2(nn.Module):
     def forward(self, x, *args, **kwargs):
         """ Forward pass.
         """
-        print(f"Forward called with: x={x}, args={args}, kwargs={kwargs}")
         for lname in self.model:
             layer = self.model[lname]
             #print(f"\nSTART Forward: lname = {lname}\n, layer = {layer}\n, INPUT x.shape = {x.shape}")
@@ -97,7 +96,7 @@ class DyadicCNN3DV2(nn.Module):
 
         # Dyad loop
         for didx in range(0, nd):
-            print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}, nk={nk}")
+            #print(f"Building layer {didx}: ic={ic}, oc={nk[didx]}, nk={nk}")
             if didx == 0:
                 ic = ic
                 oc = int(nk[didx])
