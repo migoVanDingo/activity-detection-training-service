@@ -16,6 +16,7 @@ class Preprocess:
             Preprocess trims and save as a .pt file.
             """
             system_logger.info(f"Preprocessing data from: {trim_list_file}")
+            print(f"{__class__.__name__} -- Preprocessing data from: {trim_list_file}")
             trims = []
 
             # Load trims from file
@@ -26,6 +27,8 @@ class Preprocess:
                     video_path = os.path.join(video_directory, video_path)
                     label = int(label.rstrip())
 
+                    print(f"Processing video: {video_path}")
+
                     # Preprocess video
                     video_tensor = load_to_tensor_using_cv2(video_path, oshape=output_shape, data_aug_flag=data_aug_flag)
 
@@ -35,6 +38,7 @@ class Preprocess:
             # Save as .pt file
             torch.save(trims, output_file)
             system_logger.info(f"Preprocessed data saved to: {output_file}")
+            print(f"{__class__.__name__} -- Preprocessed data saved to: {output_file}")
         except FileNotFoundError:
             system_logger.info(f"{__class__.__name__} -- {traceback.format_exc()} -- Error file not found: {trim_list_file}")
         except Exception as e:
