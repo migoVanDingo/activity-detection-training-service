@@ -2,7 +2,6 @@ import os
 import traceback
 import torch
 from dotenv import load_dotenv
-from utility.file import FileUtils
 from utility.video import load_to_tensor_using_cv2
 from utility.logger_config import setup_logger
 load_dotenv()
