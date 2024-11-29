@@ -1,5 +1,7 @@
 import os
 
+import torch
+
 class FileUtils:
     def check_file_path(file_path: str) -> bool:
         """
@@ -29,4 +31,28 @@ class FileUtils:
         """
         with open(file_path, "r") as file:
             return file.read()
+        
+    
+    def create_empty_pt_file(file_path: str) -> bool:
+        """
+        Create an empty .pt file using torch.save.
+        :param file_path: str : Path to the .pt file
+        :return: True if the file is created, False otherwise
+        """
+        print(f"Attempting to create .pt file: {file_path}")
+        
+        # Ensure the directory exists
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            print(f"Directory does not exist. Creating: {directory}")
+            os.makedirs(directory, exist_ok=True)
+        
+        # Check if the file already exists
+        if not os.path.isfile(file_path):
+            torch.save({}, file_path)  # Save an empty dictionary
+            print(f"Created .pt file at: {file_path}")
+            return True
+        
+        print(f".pt file already exists: {file_path}")
+        return False
 
