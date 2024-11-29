@@ -17,6 +17,7 @@ class FileUtils:
         """
         if not os.path.isfile(file_path):
             with open(file_path, "w") as file:
+                file.close()
                 return True
         return False
 
