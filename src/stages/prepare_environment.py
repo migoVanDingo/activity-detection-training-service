@@ -31,7 +31,8 @@ if __name__ == "__main__":
     with open(config['prepare_environment']['model_summary'], "w") as file:
         
         model = ModelUtils.load_model(config)
-        model_summary = str(summary(model, input_data=torch.randn(*config['training']['input_shape']), batch_dim=config['training']['batch_size'], device=DeviceUtils.get_cuda_device(config['prepare_environment']['cuda_device_id'])))
+        input_data = [config["load_training_data"]["batch_size"], *config["load_training_data"]["input_shape"]]
+        model_summary = str(summary(model, input_data=torch.randn(*input_data), batch_dim=config['training']['batch_size'], device=DeviceUtils.get_cuda_device(config['prepare_environment']['cuda_device_id'])))
 
         # Save model summary to file
         file.write(model_summary)
