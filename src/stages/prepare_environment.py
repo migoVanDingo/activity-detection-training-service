@@ -2,6 +2,7 @@ import os
 
 import torch
 
+from src.utility.file import FileUtils
 from utility.constant import Constant
 from utility.device import DeviceUtils
 from utility.directory import DirectoryUtils
@@ -25,6 +26,10 @@ if __name__ == "__main__":
     checkpoint_dir = os.path.join(config['prepare_environment']['working_dir'], Constant.CHECKPOINT_DIRECTORY)
     DirectoryUtils.create_directory(checkpoint_dir)
     system_logger.info(f"Checkpoint directory created at {checkpoint_dir}")
+
+    
+    FileUtils.create_file(config['preprocess']['output_file_name']) 
+    print(f"Create preprocess output file: {config['preprocess']['output_file_name']}")
 
     
     #Generate model summary

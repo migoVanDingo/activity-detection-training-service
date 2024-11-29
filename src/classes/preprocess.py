@@ -19,6 +19,7 @@ class Preprocess:
             system_logger.info(f"Preprocessing data from: {trim_list_file}")
             print(f"{__class__.__name__} -- Preprocessing data from: {trim_list_file}")
             trims = []
+            
 
             # Load trims from file
             with open(trim_list_file, 'r') as f:
@@ -37,7 +38,7 @@ class Preprocess:
                     trims.append((label, video_tensor))
 
             # Save as .pt file
-            FileUtils.create_file(os.path.dirname(output_file))
+            
             torch.save(trims, output_file)
             system_logger.info(f"Preprocessed data saved to: {output_file}")
             print(f"{__class__.__name__} -- Preprocessed data saved to: {output_file}")
