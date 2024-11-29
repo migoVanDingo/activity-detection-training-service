@@ -2,6 +2,8 @@ import os
 from classes.preprocess import Preprocess
 from utility.load import LoadUtils
 from utility.logger_config import setup_logger
+from dotenv import load_dotenv
+load_dotenv()
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == '__main__':

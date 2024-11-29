@@ -13,3 +13,16 @@ stages:
       - data/processed/model_summary.txt
       - data/processed/checkpoint 
 
+  preprocess_data:
+    cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/preprocess_data.py
+    deps:
+      - src/utility/load.py
+      - src/utility/directory.py
+      - src/utility/preprocess.py
+      - src/utility/video.py
+      - src/utility/file.py
+    params:
+      - preprocess
+    outs:
+      - data/interim/trim_data.pt
+

@@ -5,7 +5,7 @@ import numpy as np
 import skvideo.io as skvio
 import torch
 
-from utility.file import check_file_path
+from utility.file import FileUtils
 
 
 def get_video_properties(vpath: str):
@@ -134,7 +134,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
         Data augmentation flag
     """
     props = {}
-    if not check_file_path(vpath):
+    if not FileUtils.check_file_path(vpath):
         props['islocal'] = False
 
     # Get video properties
