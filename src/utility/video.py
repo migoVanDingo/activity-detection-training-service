@@ -166,6 +166,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             w_translation = random.randint(-5, 5)
             hflip_prob = random.uniform(0,1)
 
+    print("------>>>>>> HERE")
     poc = 0  # picture order count
     while vo.isOpened():
         ret, frame = vo.read()
@@ -193,7 +194,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             break
 
     vo.release()
-    print("Finished loading video to tensor using cv2")
+    
     return frames_torch
 
 
