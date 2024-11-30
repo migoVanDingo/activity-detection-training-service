@@ -9,7 +9,11 @@ class FileUtils:
         :param file_path :: str : path to file
         :return: True if file exists, False otherwise
         """
-        return os.path.isfile(file_path)
+        try:
+            return os.path.isfile(file_path)
+        except FileNotFoundError:
+            print(f"File not found: {file_path}")
+            return False
 
     def create_file(file_path: str) -> bool:
         """
