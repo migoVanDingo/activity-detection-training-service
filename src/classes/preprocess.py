@@ -37,7 +37,7 @@ class Preprocess:
                     trims.append((label, video_tensor))
 
             # Save as .pt file
-            
+            print(f"===============> Saving preprocessed data to: {output_file}")
             torch.save(trims, output_file)
             system_logger.info(f"Preprocessed data saved to: {output_file}")
             print(f"{__class__.__name__} -- Preprocessed data saved to: {output_file}")

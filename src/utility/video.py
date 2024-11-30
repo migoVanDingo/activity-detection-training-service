@@ -205,7 +205,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             break
 
     vo.release()
-    
+    print("------>>>>>> Finish")
     return frames_torch
 
 
