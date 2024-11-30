@@ -5,8 +5,9 @@ import numpy as np
 import skvideo.io as skvio
 import torch
 
+from src.utility.logger_config import setup_logger
 from utility.file import FileUtils
-
+system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 def get_video_properties(vpath: str):
     """ Returns a dictionary with following video properties,
@@ -29,67 +30,73 @@ def get_video_properties(vpath: str):
     vpath: str
         Video file path
     """
-    # Get video file name and directory location
-    vdir_loc = os.path.dirname(vpath)
-    vname, vext = os.path.splitext(os.path.basename(vpath))
+    try:
+        print("Getting video properties")
+        system_logger.info(f"Getting video properties")
+        # Get video file name and directory location
+        vdir_loc = os.path.dirname(vpath)
+        vname, vext = os.path.splitext(os.path.basename(vpath))
 
-    # Read video meta information
-    vmeta = skvio.ffprobe(vpath)
+        # Read video meta information
+        vmeta = skvio.ffprobe(vpath)
 
-    # If it is empty i.e. scikit video cannot read metadata
-    # return empty stings and zeros
-    if vmeta == {}:
+        # If it is empty i.e. scikit video cannot read metadata
+        # return empty stings and zeros
+        if vmeta == {}:
+            vprops = {
+                'islocal': False,
+                'full_path': vpath,
+                'name': vname,
+                'extension': vext,
+                'dir_loc': vdir_loc,
+                'frame_rate': 0,
+                'duration': 0,
+                'num_frames': 0,
+                'width': 0,
+                'height': 0,
+                'frame_dim': None
+            }
+
+            return vprops
+
+        # Calculate average frame rate
+        fr_str = vmeta['video']['@avg_frame_rate']
+        fr = round(int(fr_str.split("/")[0]) / int(fr_str.split("/")[1]))
+
+        # get duration
+        vdur = round(float(vmeta['video']['@duration']))
+
+        # get number of frames
+        vnbfrms = int(vmeta['video']['@nb_frames'])
+
+        # video width
+        width = int(vmeta['video']['@width'])
+
+        # video height
+        height = int(vmeta['video']['@height'])
+
+        # Frame dimension assuming color video
+        frame_dim = (height, width, 3)
+
+        # Creating properties dictionary
         vprops = {
-            'islocal': False,
+            'islocal': True,
             'full_path': vpath,
             'name': vname,
             'extension': vext,
             'dir_loc': vdir_loc,
-            'frame_rate': 0,
-            'duration': 0,
-            'num_frames': 0,
-            'width': 0,
-            'height': 0,
-            'frame_dim': None
+            'frame_rate': fr,
+            'duration': vdur,
+            'num_frames': vnbfrms,
+            'width': width,
+            'height': height,
+            'frame_dim': frame_dim
         }
 
         return vprops
-
-    # Calculate average frame rate
-    fr_str = vmeta['video']['@avg_frame_rate']
-    fr = round(int(fr_str.split("/")[0]) / int(fr_str.split("/")[1]))
-
-    # get duration
-    vdur = round(float(vmeta['video']['@duration']))
-
-    # get number of frames
-    vnbfrms = int(vmeta['video']['@nb_frames'])
-
-    # video width
-    width = int(vmeta['video']['@width'])
-
-    # video height
-    height = int(vmeta['video']['@height'])
-
-    # Frame dimension assuming color video
-    frame_dim = (height, width, 3)
-
-    # Creating properties dictionary
-    vprops = {
-        'islocal': True,
-        'full_path': vpath,
-        'name': vname,
-        'extension': vext,
-        'dir_loc': vdir_loc,
-        'frame_rate': fr,
-        'duration': vdur,
-        'num_frames': vnbfrms,
-        'width': width,
-        'height': height,
-        'frame_dim': frame_dim
-    }
-
-    return vprops
+    except Exception as e:
+        system_logger.error(f"get_video_properties Error: {e}")
+        print(f"get_video_properties Error: {e}")
 
 def save_spatiotemporal_trim(video_props, sfrm, efrm, bbox, opth):
         """
