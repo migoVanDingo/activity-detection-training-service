@@ -138,6 +138,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
     if not FileUtils.check_file_path(vpath):
         props['islocal'] = False
 
+    print("------>>>>>> HERE")
     # Get video properties
     props = get_video_properties(vpath)
 
@@ -166,7 +167,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             w_translation = random.randint(-5, 5)
             hflip_prob = random.uniform(0,1)
 
-    print("------>>>>>> HERE")
+    
     poc = 0  # picture order count
     while vo.isOpened():
         ret, frame = vo.read()
