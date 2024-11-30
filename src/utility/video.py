@@ -133,6 +133,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
     data_aug_flag : bool
         Data augmentation flag
     """
+    print("Loading video to tensor using cv2")
     props = {}
     if not FileUtils.check_file_path(vpath):
         props['islocal'] = False
@@ -192,6 +193,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             break
 
     vo.release()
+    print("Finished loading video to tensor using cv2")
     return frames_torch
 
 
