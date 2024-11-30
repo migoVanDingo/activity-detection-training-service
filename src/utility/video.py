@@ -7,6 +7,9 @@ import torch
 
 from utility.logger_config import setup_logger
 from utility.file import FileUtils
+
+from dotenv import load_dotenv
+load_dotenv()
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 def get_video_properties(vpath: str):
