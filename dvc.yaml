@@ -26,3 +26,20 @@ stages:
     outs:
       - data/interim/trim_data.pt
 
+  train:
+    cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/train.py
+    deps:
+      - src/utility/load.py
+      - src/utility/directory.py
+      - src/utility/model.py
+      - src/utility/device.py
+    params:
+      - training
+      - prepare_environment
+      - load_training_data
+    outs:
+      - data/processed/training.json
+      - data/processed/validation.json
+
+
+
