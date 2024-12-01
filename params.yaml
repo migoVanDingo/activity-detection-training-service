@@ -15,8 +15,8 @@ prepare_environment:
   checkpoint: data/external/best_epoch53.pth
   working_dir: data/processed
   logs:
-  - training_log: training.json
-  - validation_log: validation.json
+  - training.json
+  - validation.json
   model:
     file: src/models/dyadic_cnn_3d.py
     class: DyadicCNN3DV2 
