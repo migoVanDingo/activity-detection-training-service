@@ -38,8 +38,8 @@ class TrainAndValidate:
 
             # Write to training logs
             train_log, val_log = self.init_logs()
-            self.write_logs(train_log, {"mode": "info", "start_time":start_time })
-            self.write_logs(val_log, {"mode": "info", "start_time":start_time })
+            self.write_logs(train_log, {"mode": "info", "start_time":f"{start_time}" })
+            self.write_logs(val_log, {"mode": "info", "start_time":f"{start_time}" })
 
 
             # Load model to GPU
