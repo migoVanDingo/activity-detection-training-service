@@ -13,8 +13,8 @@ from utility.logger_config import setup_logger
 system_logger = setup_logger(os.environ['SYSTEM_LOG_FILE'], 'main_logger')
 
 if __name__ == '__main__':
-    system_logger.info("STAGE: preprocess_data")
-    print("STAGE: preprocess_data")
+    system_logger.info("STAGE: Train")
+    print("STAGE: Train")
     config = LoadUtils.load_yaml(os.environ['PARAMS_PATH'])
 
     # Load Training Data
