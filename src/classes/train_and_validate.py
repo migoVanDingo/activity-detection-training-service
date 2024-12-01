@@ -217,7 +217,7 @@ class TrainAndValidate:
     def write_logs(self, log_file, log_data):
         time = datetime.now()
         log = {
-            "time": time,
+            "time": f"{time}",
             "data": log_data
         }
         system_logger.info(f"{self.__class__.__name__} -- FILE: {log_file} ----- LOGGING: {log}")
