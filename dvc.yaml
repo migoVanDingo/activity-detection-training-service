@@ -6,6 +6,7 @@ stages:
       - src/utility/directory.py
       - src/utility/model.py
       - src/utility/device.py
+      - src/stages/prepare_environment.py
     params:
       - prepare_environment
       - training
@@ -20,6 +21,7 @@ stages:
       - src/utility/directory.py
       - src/utility/video.py
       - src/utility/file.py
+      - src/stages/preprocess_data.py
     params:
       - preprocess
       - prepare_environment
@@ -33,6 +35,7 @@ stages:
       - src/utility/directory.py
       - src/utility/model.py
       - src/utility/device.py
+      - src/stages/train.py
     params:
       - training
       - prepare_environment
