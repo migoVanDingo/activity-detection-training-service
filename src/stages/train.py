@@ -18,11 +18,11 @@ if __name__ == '__main__':
     config = LoadUtils.load_yaml(os.environ['PARAMS_PATH'])
 
     # Load Training Data
-    train_data = LoadDataset(video_directory=config['preprocess']['output_file_name'])
+    train_data = LoadDataset(preprocessed_file=config['preprocess']['output_file_name'])
     train_loader = DataLoader(train_data, batch_size=config['training']['batch_size'], shuffle=True, num_workers=config['load_training_data']['num_workers'])
 
     # Load Validation Data
-    val_data = LoadDataset(video_directory=config['preprocess']['output_val_file_name'])
+    val_data = LoadDataset(preprocessed_file=config['preprocess']['output_val_file_name'])
     val_loader = DataLoader(val_data, batch_size=config['training']['batch_size'], shuffle=True, num_workers=config['load_validation_data']['num_workers'])
     
     # Get Cuda device and load into GPU
