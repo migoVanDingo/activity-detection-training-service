@@ -32,6 +32,7 @@ if __name__ == "__main__":
     create_validation_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_val_file_name']))
 
     for file in config['prepare_environment']['logs']:
+        print(config['prepare_environment']['working_dir'], file)
         FileUtils.create_file(os.path.join(config['prepare_environment']['working_dir'], file))
     
 
