@@ -209,7 +209,7 @@ class TrainAndValidate:
         files = self.params['prepare_environment']['logs']
         file_objects = []
         for file in files:
-            file_path = os.path.join(self.params['prepare_environment']['working_dir'], files[file])
+            file_path = os.path.join(self.params['prepare_environment']['working_dir'], file)
             file_objects.append(open(file_path, "w"))
 
         return file_objects
