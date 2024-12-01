@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     # Load Validation Data
     val_data = LoadDataset(preprocessed_file=config['preprocess']['output_val_file_name'])
-    val_loader = DataLoader(val_data, batch_size=config['training']['batch_size'], shuffle=True, num_workers=config['load_validation_data']['num_workers'])
+    val_loader = DataLoader(val_data, batch_size=config['training']['batch_size'], shuffle=True, num_workers=config['load_training_data']['num_workers_val'])
     
     # Get Cuda device and load into GPU
     device = DeviceUtils.get_cuda_device(config['prepare_environment']['cuda_device_id'])
