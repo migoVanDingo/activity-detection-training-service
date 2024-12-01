@@ -29,6 +29,7 @@ load_training_data:
   batch_size: 32
   shuffle: True
   num_workers: 16
+  num_workers_val: 8
 
 training:
   max_epochs: 100

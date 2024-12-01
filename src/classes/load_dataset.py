@@ -9,7 +9,7 @@ class LoadDataset(Dataset):
         """
         Initialize the dataset from the preprocessed file. File generated from preprocess stage. 
         """
-        self.data = torch.load(preprocessed_file)
+        self.data = torch.load(preprocessed_file, weights_only=True)
     
     def __len__(self):
         return len(self.data)
