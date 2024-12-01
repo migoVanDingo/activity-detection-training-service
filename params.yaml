@@ -34,7 +34,7 @@ load_training_data:
 training:
   max_epochs: 100
   epoch_save_interval: 5
-  epock_skip: 50
+  epoch_skip: 50
   early_stopping: 5
   input_shape: [3, 90, 224, 224]
   batch_size: 16
