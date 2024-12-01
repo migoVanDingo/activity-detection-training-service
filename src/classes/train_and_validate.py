@@ -1,4 +1,5 @@
 from datetime import datetime
+import traceback
 from sklearn.metrics import accuracy_score
 from barbar import Bar
 import time, json, math, os, torch
@@ -29,27 +30,33 @@ class TrainAndValidate:
         self.cuda_device = cuda_device
 
     def do_process(self):
-        # Start timer
-        start_time = datetime.now()
-        system_logger.info(f"{self.__class__.__name__} -- Training started at {start_time}")
+        try:
+            print(f"{self.__class__.__name__} -- Training started")
+            # Start timer
+            start_time = datetime.now()
+            system_logger.info(f"{self.__class__.__name__} -- Training started at {start_time}")
 
-        # Write to training logs
-        train_log, val_log = self.init_logs()
-        self.write_logs(train_log, {"mode": "info", "start_time":start_time })
-        self.write_logs(val_log, {"mode": "info", "start_time":start_time })
+            # Write to training logs
+            train_log, val_log = self.init_logs()
+            self.write_logs(train_log, {"mode": "info", "start_time":start_time })
+            self.write_logs(val_log, {"mode": "info", "start_time":start_time })
 
 
-        # Load model to GPU
-        self.net.to(self.cuda_device)
+            # Load model to GPU
+            self.net.to(self.cuda_device)
 
-        # Start training loop
-        self.epoch_cycle(self.params['training']['max_epochs'], train_log, val_log)
+            # Start training loop
+            self.epoch_cycle(self.params['training']['max_epochs'], train_log, val_log)
 
-        train_log.close()
-        val_log.close()
+            train_log.close()
+            val_log.close()
 
- 
-        return None
+    
+            return None
+        except Exception as e:
+            print(f"{self.__class__.__name__} -- {traceback.format_exc()} -- ERROR: {e}")
+            system_logger.error(f"{self.__class__.__name__} -- {traceback.format_exc()} - {e} Error: {e}")
+            return e
 
 
 
@@ -95,6 +102,7 @@ class TrainAndValidate:
             self.write_logs(val_log, val_metrics)
 
             system_logger.info(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch}")
+            print(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch}")
 
             if stop_limit >= self.params['training']['early_stopping']:
                     break
@@ -212,7 +220,8 @@ class TrainAndValidate:
             "time": time,
             "data": log_data
         }
-        system_logger.info(f"{self.__class__.__name__} -- {log}")
+        system_logger.info(f"{self.__class__.__name__} -- FILE: {log_file} ----- LOGGING: {log}")
+        print(f"{self.__class__.__name__} -- FILE: {log_file} -----  LOGGING: {log}")
         log_file.write(json.dumps(log))
 
 

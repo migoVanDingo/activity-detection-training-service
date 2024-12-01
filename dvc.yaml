@@ -22,6 +22,7 @@ stages:
       - src/utility/file.py
     params:
       - preprocess
+      - prepare_environment
     outs:
       - data/interim/trim_data.pt
 

@@ -28,9 +28,9 @@ if __name__ == "__main__":
     system_logger.info(f"Checkpoint directory created at {checkpoint_dir}")
 
     
-    response = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_file_name'])) 
-    print(f"RESPONSE: {response}")
-    print(f"Create preprocess output file: {os.path.join(os.getcwd(), config['preprocess']['output_file_name'])}")
+    create_training_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_file_name'])) 
+    create_validation_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_val_file_name']))
+    
 
     
     #Generate model summary

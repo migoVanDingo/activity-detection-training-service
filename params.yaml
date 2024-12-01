@@ -1,8 +1,11 @@
 preprocess:
   trim_list_file: data/raw/training_data.txt
+  val_data: data/raw/val_data.txt
   output_shape: [224, 224]
   output_file_name: data/interim/trim_data.pt
+  output_val_file_name: data/interim/trim_val_data.pt
   data_aug_flag: True
+  val_data_aug_flag: False
   video_dir: data/processed/one_trim_per_instance_3sec_224
 
 prepare_environment:
