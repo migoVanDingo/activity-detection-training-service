@@ -137,8 +137,8 @@ class TrainAndValidate:
 
     def train(self, data):
         # Label and input tensors
-        labels, inputs = (data[0].to(self.device, non_blocking=True),
-                          data[1].to(self.device, non_blocking=True))
+        labels, inputs = (data[0].to(self.cuda_device, non_blocking=True),
+                          data[1].to(self.cuda_device, non_blocking=True))
         labels = torch.reshape(labels.float(), (-1, 1))
 
         start_time = time.time()
