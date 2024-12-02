@@ -187,7 +187,7 @@ class TrainAndValidate:
         inputs, labels = (data[0].to(self.cuda_device, non_blocking=True),
                           data[1].to(self.cuda_device, non_blocking=True))
         labels = torch.reshape(labels.float(), (-1, 1))
-        labels = labels.data.clone().to('cpu').numpy().flatten().tolist()
+        
 
         start_time = time.time()
         outputs = self.net(inputs)
@@ -195,6 +195,7 @@ class TrainAndValidate:
         total_time = round(end_time - start_time, 5)
         prediction = outputs.data.clone().to('cpu').numpy().flatten().tolist()
         
+        labels = labels.data.clone().to('cpu').numpy().flatten().tolist()
         loss = self.criterion(outputs, labels)
         loss = loss.data.clone().to('cpu').numpy().tolist()
         
