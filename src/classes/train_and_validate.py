@@ -136,15 +136,13 @@ class TrainAndValidate:
 
     def train(self, data):
         # Label and input tensors
-        print(f"============>>> data: {data}")
-        labels, inputs = (data[0].to(self.cuda_device, non_blocking=True),
+        inputs, labels = (data[0].to(self.cuda_device, non_blocking=True),
                           data[1].to(self.cuda_device, non_blocking=True))
         labels = torch.reshape(labels.float(), (-1, 1))
 
         start_time = time.time()
         self.optimizer.zero_grad()
 
-        print(f"============>>> inputs: {inputs}")
         outputs = self.net(inputs)
         loss = self.criterion(outputs, labels)
         loss.backward()
