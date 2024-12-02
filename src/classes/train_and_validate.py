@@ -129,7 +129,7 @@ class TrainAndValidate:
         average_loss = round(sum(loss_list) / len(loss_list), 2)
 
         system_logger.info(f"{self.__class__.__name__} -- Training metrics -- accuracy:{accuracy}, average_loss:{average_loss}, total_time:{total_time}")
-        return average_loss, accuracy, total_time
+        return average_loss, accuracy
         
 
 
