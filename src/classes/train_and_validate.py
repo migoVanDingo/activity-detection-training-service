@@ -185,21 +185,26 @@ class TrainAndValidate:
 
     def validate(self, data):
         inputs, labels = (data[0].to(self.cuda_device, non_blocking=True),
-                          data[1].to(self.cuda_device, non_blocking=True))
-        labels = torch.reshape(labels.float(), (-1, 1))
+                        data[1].to(self.cuda_device, non_blocking=True))
+        labels = torch.reshape(labels.float(), (-1, 1))  # Ensure it's the correct shape
         
-
         start_time = time.time()
         outputs = self.net(inputs)
         end_time = time.time()
         total_time = round(end_time - start_time, 5)
+        
+        # Convert predictions to list for further processing
         prediction = outputs.data.clone().to('cpu').numpy().flatten().tolist()
         
-        labels = labels.data.clone().to('cpu').numpy().flatten().tolist()
-        loss = self.criterion(outputs, labels)
-        loss = loss.data.clone().to('cpu').numpy().tolist()
+        # Compute the loss
+        loss = self.criterion(outputs, labels)  # Keep labels as a tensor here
+        loss = loss.item()  # Convert to a scalar if needed for logging
         
-        return loss, prediction, labels, total_time
+        # If you still need labels as a list, convert it AFTER computing the loss
+        labels_list = labels.data.clone().to('cpu').numpy().flatten().tolist()
+        
+        return loss, prediction, labels_list, total_time
+
         
 
 
