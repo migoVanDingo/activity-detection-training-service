@@ -114,7 +114,7 @@ class TrainAndValidate:
         time_taken_list = []
         loss_list = []
         prediction_list = []
-
+        print(f"------====>>> train_loader: {self.train_loader}")
         for data in self.train_loader:
             loss, prediction, labels, time_taken = self.train(data)
             
