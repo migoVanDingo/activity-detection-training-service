@@ -37,7 +37,7 @@ training:
   epoch_skip: 50
   early_stopping: 5
   input_shape: [3, 90, 224, 224]
-  batch_size: 16
+  batch_size: 32
   
 
 

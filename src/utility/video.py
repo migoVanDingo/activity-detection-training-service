@@ -143,7 +143,7 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
     data_aug_flag : bool
         Data augmentation flag
     """
-    print("Loading video to tensor using cv2")
+    print(f"Loading video to tensor using cv2 {vpath}")
     props = {}
     if not FileUtils.check_file_path(vpath):
         props['islocal'] = False
@@ -151,7 +151,6 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
     
     # Get video properties
     props = get_video_properties(vpath)
-    print("------>>>>>> HERE2")
     # Initialize torch tensor that can contain video
     frames_torch = torch.FloatTensor(
         3, props['num_frames'], oshape[1], oshape[0]
@@ -205,7 +204,6 @@ def load_to_tensor_using_cv2(vpath, oshape, data_aug_flag = False):
             break
 
     vo.release()
-    print("------>>>>>> Finish")
     return frames_torch
 
 
