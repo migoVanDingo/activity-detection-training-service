@@ -63,6 +63,7 @@ class DyadicCNN3DV2(nn.Module):
     def forward(self, x, *args, **kwargs):
         """ Forward pass.
         """
+        print(f"=======>>> DYADIC NN X: {x}")
         for lname in self.model:
             layer = self.model[lname]
             #print(f"\nSTART Forward: lname = {lname}\n, layer = {layer}\n, INPUT x.shape = {x.shape}")
