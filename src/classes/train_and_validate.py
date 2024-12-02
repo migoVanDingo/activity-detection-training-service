@@ -70,7 +70,7 @@ class TrainAndValidate:
             training_loss, training_accuracy = self.cycle_metrics()
 
             if epoch % self.params['training']['epoch_save_interval'] == 0:
-                self.save_checkpoint(epoch, training_loss, os.environ.join(self.params['prepare_environment']['working_dir'], f"epoch_{epoch}.pth"))
+                self.save_checkpoint(epoch, training_loss, os.path.join(self.params['prepare_environment']['working_dir'], f"epoch_{epoch}.pth"))
 
             self.net.eval()
             validation_loss, validation_accuracy = self.cycle_val_metrics()
