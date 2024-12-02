@@ -184,8 +184,8 @@ class TrainAndValidate:
 
 
     def validate(self, data):
-        labels, inputs = (data[0].to(self.device, non_blocking=True),
-                          data[1].to(self.device, non_blocking=True))
+        labels, inputs = (data[0].to(self.cuda_device, non_blocking=True),
+                          data[1].to(self.cuda_device, non_blocking=True))
         labels = torch.reshape(labels.float(), (-1, 1))
         labels = labels.data.clone().to('cpu').numpy().flatten().tolist()
 
