@@ -84,6 +84,7 @@ class TrainAndValidate:
                 best_validation_accuracy = validation_accuracy
                 best_epoch = epoch
                 num_epochs_since_best = 0
+                stop_limit = 0
 
             train_metrics = {
                 "mode": "train",
@@ -102,7 +103,7 @@ class TrainAndValidate:
             self.write_logs(val_log, val_metrics)
 
             system_logger.info(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch}")
-            print(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch}")
+            print(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch} ---- Stop limit: {stop_limit}")
 
             if stop_limit >= self.params['training']['early_stopping']:
                     break
