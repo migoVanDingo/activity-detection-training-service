@@ -36,20 +36,33 @@ class TrainAndValidate:
             start_time = datetime.now()
             system_logger.info(f"{self.__class__.__name__} -- Training started at {start_time}")
 
-            # Write to training logs
-            train_log, val_log = self.init_logs()
-            self.write_logs(train_log, {"mode": "info", "start_time":f"{start_time}" })
-            self.write_logs(val_log, {"mode": "info", "start_time":f"{start_time}" })
-
-
+            train_list = []
+            val_list = []
+            
+            train_list.append({"mode": "info", "time":f"{start_time}", "action": "start"})
+            val_list.append({"mode": "info", "time":f"{start_time}", "action": "start"})
+            
             # Load model to GPU
             self.net.to(self.cuda_device)
 
             # Start training loop
-            self.epoch_cycle(self.params['training']['max_epochs'], train_log, val_log)
+            train_log, val_log = self.epoch_cycle(self.params['training']['max_epochs'])
+            train_list.append(train_log)
+            val_list.append(val_log)
+
+            # End timer
+            end_time = datetime.now()
+            train_list.append({"mode": "info", "time":f"{end_time}", "action": "end"})
+            val_list.append({"mode": "info", "time":f"{end_time}", "action": "end"})
+
+            # Write to training logs
+            train_log, val_log = self.init_logs()
+            self.write_logs(train_log, train_list)
+            self.write_logs(val_log, val_list)
 
             train_log.close()
             val_log.close()
+
 
     
             return None
@@ -60,10 +73,12 @@ class TrainAndValidate:
 
 
 
-    def epoch_cycle(self, max_epochs, train_log, val_log):
+    def epoch_cycle(self, max_epochs):
         best_validation_accuracy = 0
         best_validation_loss = math.inf
         stop_limit = 0
+        train_log_list = []
+        val_log_list = []
         for epoch in range(max_epochs):
 
             self.net.train()
@@ -92,7 +107,8 @@ class TrainAndValidate:
                 "training_loss": training_loss,
                 "training_accuracy": training_accuracy
             }
-            self.write_logs(train_log, train_metrics)
+            train_log_list.append(train_metrics)
+            
 
             val_metrics = {
                 "mode": "validation",
@@ -100,13 +116,17 @@ class TrainAndValidate:
                 "validation_loss": validation_loss,
                 "validation_accuracy": validation_accuracy
             }
-            self.write_logs(val_log, val_metrics)
+            val_log_list.append(val_metrics)
+
+            
 
             system_logger.info(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch}")
             print(f"{self.__class__.__name__} -- Epoch: {epoch}, Training loss: {training_loss}, Training accuracy: {training_accuracy}, Validation loss: {validation_loss}, Validation accuracy: {validation_accuracy}, Best validation loss: {best_validation_loss}, Best validation accuracy: {best_validation_accuracy}, Best epoch: {best_epoch} ---- Stop limit: {stop_limit}")
 
             if stop_limit >= self.params['training']['early_stopping']:
                     break
+        
+        return train_log_list, val_log_list
 
 
     ### Training
@@ -228,7 +248,7 @@ class TrainAndValidate:
             "data": log_data
         }
         system_logger.info(f"{self.__class__.__name__} -- FILE: {log_file} ----- LOGGING: {log}")
-        print(f"{self.__class__.__name__} -- FILE: {log_file} -----  LOGGING: {log}")
+        
         log_file.write(json.dumps(log))
 
 

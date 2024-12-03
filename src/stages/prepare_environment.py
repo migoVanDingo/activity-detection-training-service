@@ -23,7 +23,7 @@ if __name__ == "__main__":
     config = LoadUtils.load_yaml(os.environ['PARAMS_PATH'])
 
     # Create checkpoint directory
-    checkpoint_dir = os.path.join(config['prepare_environment']['working_dir'], Constant.CHECKPOINT_DIRECTORY)
+    checkpoint_dir = config['prepare_environment']['checkpoint_dir']
     DirectoryUtils.create_directory(checkpoint_dir)
     system_logger.info(f"Checkpoint directory created at {checkpoint_dir}")
 
