@@ -47,8 +47,8 @@ class TrainAndValidate:
 
             # Start training loop
             train_log, val_log = self.epoch_cycle(self.params['training']['max_epochs'])
-            train_list.append(train_log)
-            val_list.append(val_log)
+            train_list.append(*train_log)
+            val_list.append(*val_log)
 
             # End timer
             end_time = datetime.now()
