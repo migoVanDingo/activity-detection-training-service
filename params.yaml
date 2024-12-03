@@ -13,6 +13,7 @@ prepare_environment:
   cuda_device_id: cuda:0
   model_summary: data/processed/model_summary.txt
   checkpoint: data/external/best_epoch53.pth
+  checkpoint_dir: data/processed/checkpoint
   working_dir: data/processed
   logs:
   - training.json
@@ -34,8 +35,8 @@ load_training_data:
 training:
   max_epochs: 100
   epoch_save_interval: 5
-  epoch_skip: 10
-  early_stopping: 5
+  epoch_skip: 50
+  early_stopping: 10
   input_shape: [3, 90, 224, 224]
   batch_size: 16
   
