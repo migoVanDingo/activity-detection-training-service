@@ -28,8 +28,8 @@ if __name__ == "__main__":
     system_logger.info(f"Checkpoint directory created at {checkpoint_dir}")
 
     
-    #create_training_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_file_name'])) 
-    #create_validation_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_val_file_name']))
+    create_training_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_file_name'])) 
+    create_validation_file = FileUtils.create_empty_pt_file(os.path.join(os.getcwd(), config['preprocess']['output_val_file_name']))
 
     for file in config['prepare_environment']['logs']:
         print(config['prepare_environment']['working_dir'], file)
