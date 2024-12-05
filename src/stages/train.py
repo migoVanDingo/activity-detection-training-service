@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # Load Training Data
     print(f"Loading training data from: {config['preprocess']['output_file_name']}")
     train_data = LoadDataset(preprocessed_file=config['preprocess']['output_file_name'])
-    print(f"Training data loaded: {train_data.__len__}")
+    print(f"Training data loaded: {len(train_data)}")
     train_loader = DataLoader(train_data, batch_size=config['training']['batch_size'], shuffle=True, num_workers=config['load_training_data']['num_workers'])
 
     # Load Validation Data
