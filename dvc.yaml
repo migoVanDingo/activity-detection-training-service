@@ -21,7 +21,7 @@ stages:
       - src/utility/directory.py
       - src/utility/video.py
       - src/utility/file.py
-      - src/stages/preprocess_feedback.py
+      - src/stages/preprocess_feedback_data.py
     params:
       - preprocess_feedback
       - prepare_environment
