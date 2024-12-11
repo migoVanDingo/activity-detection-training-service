@@ -14,7 +14,7 @@ stages:
       - data/processed/model_summary.txt
       - data/processed/checkpoint 
 
-  preprocess_feedback:
+  preprocess_feedback_data:
     cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/preprocess_feedback_data.py
     deps:
       - src/utility/load.py
