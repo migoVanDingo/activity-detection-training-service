@@ -8,6 +8,28 @@ preprocess:
   val_data_aug_flag: False
   video_dir: data/processed/one_trim_per_instance_3sec_224
 
+video:
+  video_dir: data/raw/videos
+  trims_dir: data/processed/one_trim_per_instance_3sec_224
+
+training_data:
+  merge_data: True
+  merge_dataset_file: data/interim/merged_train_data.csv
+
+validation_data:
+  merge_data: True
+  merge_dataset_file: data/interim/merged_val_data.csv
+
+preprocess_feedback_data:
+  is_feedback: False
+  predictions_file_path: data/raw/predictions.csv
+  filtered_predictions_file_path: data/interim/filtered_predictions.csv
+  prediction_trims_file_path: data/interim/prediction_trims.txt
+  video_trims_dir: data/processed
+  feedback_trims_list_path: data/interim/feedback_trims_list.csv
+  merged_trims_file: data/interim/merged_feedback_data.csv
+
+
 prepare_environment:
   seed: 42
   cuda_device_id: cuda:0
@@ -39,6 +61,9 @@ training:
   early_stopping: 10
   input_shape: [3, 90, 224, 224]
   batch_size: 16
+
+validation:
+  test_size: 0.2
   
 
 

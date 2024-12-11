@@ -14,6 +14,22 @@ stages:
       - data/processed/model_summary.txt
       - data/processed/checkpoint 
 
+  preprocess_feedback:
+    cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/preprocess_feedback_data.py
+    deps:
+      - src/utility/load.py
+      - src/utility/directory.py
+      - src/utility/video.py
+      - src/utility/file.py
+      - src/stages/preprocess_feedback.py
+    params:
+      - preprocess_feedback
+      - prepare_environment
+    outs:
+      - data/interim/merged_train_data.csv
+      - data/interim/merged_val_data.csv
+
+
   preprocess_data:
     cmd: PYTHONPATH=$(pwd)/src python $(pwd)/src/stages/preprocess_data.py
     deps:
@@ -22,6 +38,8 @@ stages:
       - src/utility/video.py
       - src/utility/file.py
       - src/stages/preprocess_data.py
+      - data/interim/merged_train_data.csv
+      - data/interim/merged_val_data.csv
     params:
       - preprocess
       - prepare_environment

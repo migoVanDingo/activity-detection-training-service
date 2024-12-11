@@ -85,7 +85,7 @@ class TrainAndValidate:
             training_loss, training_accuracy = self.cycle_metrics()
 
             if epoch % self.params['training']['epoch_save_interval'] == 0:
-                self.save_checkpoint(epoch, training_loss, os.path.join(self.params['prepare_environment']['checkpoint_dir'], f"epoch_{epoch}.pth"))
+                self.save_checkpoint(epoch, training_loss, os.path.join(self.params['prepare_environment']['checkpoint_dir'], f"checkpoint_epoch_{epoch}.pth"))
 
             self.net.eval()
             validation_loss, validation_accuracy = self.cycle_val_metrics()
@@ -93,7 +93,7 @@ class TrainAndValidate:
             if epoch > self.params['training']['epoch_skip'] and validation_loss >= best_validation_loss:
                 stop_limit += 1
             else:
-                checkpoint = os.path.join(self.params['prepare_environment']['checkpoint_dir'], f"epoch_{epoch}.pth")
+                checkpoint = os.path.join(self.params['prepare_environment']['checkpoint_dir'], f"best_epoch_{epoch}.pth")
                 self.save_checkpoint(epoch, validation_loss, checkpoint)
                 best_validation_loss = validation_loss
                 best_validation_accuracy = validation_accuracy

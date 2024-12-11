@@ -14,6 +14,20 @@ class FileUtils:
         except FileNotFoundError:
             print(f"File not found: {file_path}")
             return False
+        
+    def copy_file_contents(src: str, dest: str) -> None:
+        """
+        Copy file contents from src to dest
+        :param src :: str : source file path
+        :param dest :: str : destination file path
+        """
+        with open(src, "r") as src_file:
+            data = src_file.read()
+            with open(dest, "w") as dest_file:
+                dest_file.write(data)
+                dest_file.close()
+            src_file.close()
+
 
     def create_file(file_path: str) -> bool:
         """
