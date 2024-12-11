@@ -23,7 +23,7 @@ stages:
       - src/utility/file.py
       - src/stages/preprocess_feedback_data.py
     params:
-      - preprocess_feedback
+      - preprocess_feedback_data
       - prepare_environment
     outs:
       - data/interim/merged_train_data.csv
