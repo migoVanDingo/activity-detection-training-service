@@ -1,6 +1,6 @@
 import os
 from classes.preprocess import Preprocess
-from src.utility.file import FileUtils
+from utility.file import FileUtils
 from utility.load import LoadUtils
 from utility.logger_config import setup_logger
 from dotenv import load_dotenv
